@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+html,body {
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    background-color: #78c091;
+}
+
+.container {
+    background-color: #3b6e69;
+    width: 100%;
+}
+
+.container-titulo {
+    font-size: 5em;
+    text-transform: uppercase;
+    padding: 2.5rem;
+    margin: auto;
+    text-align: center;
+    color: #130f18;
+    font-family: Trebuchet MS, sans-serif;
+}
+
+.principal {
+    padding: 0 3rem;
+}
+
+.conjuntoItens {
+    width: 60%;
+    margin: auto;
+    padding: 2rem;
+    position: relative;
+}
+
+li {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    position: relative;
+}
+
+input[type="text"] {
+    width: 90%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    font-size: inherit;
+}
+
+label{
+    color: gray;
+}
+
+button{
+    border: none;
+    font-size: inherit;
+    padding: 1rem;
+    background: #d9d9d9;
+    color: #555;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.edit {
+    right: 4rem;
+}
+
+.delete{
+    right: 0;
+}
+
+/* ul li.editMode input[type=text] {
+    display:none;
+    }
+  
+  ul li.editMode label {
+    display:none;
+  } */
+
+ /* ul li.editMode input[type=text] {
+    display:block;
+  }
+  
+  ul li.editMode label {
+    display:none;
+  }
+*/
+button:hover {
+  color: #333;
+}
+
+
+
