@@ -44,7 +44,7 @@ li {
     position: relative;
 }
 
-input[type="text"] {
+#new-task {
     width: 90%;
     border: none;
     border-radius: 0.5rem;
@@ -52,8 +52,26 @@ input[type="text"] {
     font-size: inherit;
 }
 
-label{
-    color: gray;
+/*.item {
+    width: 90%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    font-size: inherit;
+}*/
+
+.inputItem{
+    width: 90%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    font-size: inherit;
+    
+}
+
+.nomeItem{
+    color: #3F2B54; 
+    font-weight: bold;
 }
 
 button{
@@ -76,25 +94,11 @@ button{
     right: 0;
 }
 
-/* ul li.editMode input[type=text] {
-    display:none;
-    }
-  
-  ul li.editMode label {
-    display:none;
-  } */
+.checkbox{
+    padding: .5rem;
+}
 
- /* ul li.editMode input[type=text] {
-    display:block;
-  }
-  
-  ul li.editMode label {
-    display:none;
-  }
-*/
 button:hover {
   color: #333;
 }
-
-
 

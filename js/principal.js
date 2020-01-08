@@ -4,7 +4,7 @@ var toDoUl = document.querySelector(".conjuntoItens");
 
 var createNewTask = function(task) {
     
-    console.log("criando task");
+  console.log("criando task");
 
     var listItem = document.createElement("li");
     var checkBox = document.createElement("input");
@@ -15,56 +15,53 @@ var createNewTask = function(task) {
 
     deleteButton.onclick = deleteTask;
     editButton.onclick = editTask;
+    checkBox.onchange = completeTask;
     
     label.innerText = task;
+    label.className = "nomeItem";
     editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.className = "edit";
     deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
     deleteButton.className = "delete";
     editInput.type="text";
+    editInput.className = "inputItem";
+    editInput.style.display = "none";
     checkBox.type = "checkbox";
-    //add data
-
+    checkBox.className = "checkbox";
+    
     listItem.appendChild(checkBox);
     listItem.appendChild(label);
-	listItem.appendChild(editInput);
-	listItem.appendChild(editButton);
-	listItem.appendChild(deleteButton);
+    listItem.appendChild(editInput);
+    listItem.appendChild(editButton);
+    listItem.appendChild(deleteButton);
 
     return listItem;
 };
 
 var addTask = function() {
-    console.log("Add Task...");
-    var listItem = createNewTask(newTask.value);
+  console.log("Add Task...");
+  var listItem = createNewTask(newTask.value);
 
-    toDoUl.appendChild(listItem);
+  toDoUl.appendChild(listItem);
 
-    newTask.value = " ";
-
+  newTask.value = " ";
 };
 
 var editTask = function(){
     console.log("Edit task...");
 
     var listItem = this.parentNode;
-    var editInput = listItem.querySelector("input[type=text]");
+    var editInput = listItem.querySelector(".inputItem");
+    //var checkBox = listItem.querySelector("input[type=text]");
     var label = listItem.querySelector("label");
 
-    var containsClass = listItem.classList.contains("editMode");
-
-        //if the class of parent is .editmode
-    if (containsClass){
-      //label text become the input's value  
+    if (editInput.style.display === "none") {
+      editInput.style.display = "inline-block";
       label.innerText = editInput.value;
-
     } else {
-        //switch to .editmode
-        //input value becomes the label's text
-      editInput.value = label.innerText;
+      editInput.style.display = "none";
+      label.innerText = editInput.value;
     }
-
-    listItem.classList.toggle("editMode"); //toggle .editmode on the parent
 }
 
 var deleteTask = function() {
@@ -74,6 +71,24 @@ var deleteTask = function() {
     ul.removeChild(listItem);  
   };
 
+var completeTask = function() {
+    var listItem = this.parentNode;
+    var checkBox = listItem.querySelector(".checkbox");
+    var label = listItem.querySelector("label");
+
+    if (checkBox.checked == false){
+      console.log("checked false");
+      //checkBox.checked = true;
+      label.style.textDecoration = "none";
+
+    } else {
+
+      console.log("checked true");
+      //checkBox.checked = true;
+      label.style.textDecoration = "line-through";
+      //label.style.textDecorationStyle="wavy";
+    }
+}
 
 addTaskBtn.addEventListener("click", addTask);
 
