@@ -39,12 +39,11 @@ var createNewTask = function(task) {
 };
 
 var addTask = function() {
-  console.log("Add Task...");
   var listItem = createNewTask(newTask.value);
 
   toDoUl.appendChild(listItem);
 
-  newTask.value = " ";
+  newTask.value = "";
 };
 
 var editTask = function(){
@@ -65,10 +64,13 @@ var editTask = function(){
 }
 
 var deleteTask = function() {
-    var listItem = this.parentNode;
-    var ul = listItem.parentNode;
+  var listItem = this.parentNode;
+  var ul = listItem.parentNode;
+  var alerta = confirm("Deseja mesmo excluir o item?");
 
-    ul.removeChild(listItem);  
+  if (alerta == true){
+    ul.removeChild(listItem);
+    }
   };
 
 var completeTask = function() {
@@ -91,5 +93,12 @@ var completeTask = function() {
 }
 
 addTaskBtn.addEventListener("click", addTask);
+
+newTask.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    document.getElementById("addTask").click();
+  }
+});
+
 
 
