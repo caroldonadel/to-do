@@ -45,31 +45,27 @@ li {
     height: 3.5rem;
 }
 
-.newTask {
-    width: 90%;
-    height: 2.87rem;
+.newItem {
+    margin-bottom: 3rem;
+}
+
+.newTaskDescription {
+    width: 70%;
+    height: 2.9rem;
     padding: .8rem;
     border: none;
     border-radius: 0.5rem;
     background-color: #c3c5c1;
     font-size: inherit;
     font-weight: bold;
+    
+    word-break: break-all;
 }
 
-.inputItem {
-    width: 90%;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #c3c5c1;
-    font-size: inherit;
-    padding: 1rem;
-    margin-left: 1rem;
-}
-
-.nomeItem {
+.taskName {
     color: #3f2b54;
     width: 90%;
-    height: 2.87rem;
+    height: 2.9rem;
     padding: .8rem;
     border: none;
     border-radius: 0.5rem;
@@ -79,6 +75,48 @@ li {
     position: absolute;
     word-break: break-all;
     margin-left: 1rem;
+    max-width: 24rem;
+}
+
+.TaskNameEdit {
+    width: 65%;
+    height: 2.9rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    font-size: inherit;
+    padding: 1rem;
+    margin-left: 2rem;
+}
+
+.dataInputEdit {
+    border: .1rem solid #c4c4c4;
+    position: absolute;
+    border-radius: .5rem;
+    background-color: rgb(170, 83, 80);
+    padding: .8rem 0.2rem;
+    width: 7rem;
+    right: 6rem;
+}
+
+.taskDate {
+    border: .1rem solid #c4c4c4;
+    position: absolute;
+    border-radius: .5rem;
+    background-color: rgb(170, 83, 80);
+    padding: .8rem 0.2rem;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 7rem;
+    right: 6rem;
+}
+
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
+}
+
+input[type="date"]::-webkit-clear-button { 
+    
+    display: none; 
 }
 
 button {
@@ -89,23 +127,23 @@ button {
     border: none;
 }
 
+button:hover {
+    color: rgb(221, 210, 210);
+}
+
 .add{
-padding: 1rem;
-height: 3.35rem;
-width: 5rem;
+    padding: 1rem;
+    height: 3.35rem;
+    width: 5rem;
 }
 
 .edit {
-    right: 2.8rem;
+    right: 2.9rem;
     padding: 1rem;
     height: 3.5rem;
-    /*border-style: solid;
-    border-color:rgb(94, 89, 89); 
-    border-width: 0 .1rem 0 0;*/
     width: 2.9rem;
 }
 .delete {
-    right: 0;
     padding: 1rem;
     height: 3.5rem;
     width: 2.9rem;
@@ -116,48 +154,15 @@ width: 5rem;
 }
 
 .checkbox {
-    width: 20px;
-    height: 20px;
-    padding: 2px;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: .2em;
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     margin: auto .6rem;
     z-index: 999;
 }
 
-.dataInput {
-    border: .1rem solid #c4c4c4;
-    position: absolute;
-    border-radius: .5rem;
-    background-color: rgb(170, 83, 80);
-    padding: .8rem 0.2rem;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
-    width: 7rem;
-    right: 6rem;
-}
 
-.datasItens {
-    border: .1rem solid #c4c4c4;
-    position: absolute;
-    border-radius: .5rem;
-    background-color: rgb(170, 83, 80);
-    padding: .8rem 0.2rem;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
-    width: 7rem;
-    right: 6rem;
-}
 
-/* Removes the spin button */
-input[type="date"]::-webkit-inner-spin-button { 
-    display: none;
-}
-
-input[type="date"]::-webkit-clear-button { 
-    
-    display: none; 
-}
-
-button:hover {
-    color: rgb(221, 210, 210);
-}
 
