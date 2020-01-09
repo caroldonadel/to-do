@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 
-html,body {
+html,
+body {
     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-size: 16px;
     width: 100%;
@@ -60,21 +61,20 @@ li {
     font-size: inherit;
 }*/
 
-.inputItem{
+.inputItem {
     width: 90%;
     border: none;
     border-radius: 0.5rem;
     background-color: #c3c5c1;
     font-size: inherit;
-    
 }
 
-.nomeItem{
-    color: #3F2B54; 
+.nomeItem {
+    color: #3f2b54;
     font-weight: bold;
 }
 
-button{
+button {
     border: none;
     font-size: inherit;
     padding: 1rem;
@@ -90,15 +90,40 @@ button{
     right: 4rem;
 }
 
-.delete{
+.delete {
     right: 0;
 }
 
-.checkbox{
-    padding: .5rem;
+.checkbox {
+     content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.datas {
+    border: 1px solid #c4c4c4;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #71AA50;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 10rem;
+    right: 5rem;
+
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
 }
 
 button:hover {
-  color: #333;
+    color: #333;
 }
-
