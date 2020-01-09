@@ -17,7 +17,7 @@ body {
 }
 
 .container-titulo {
-    font-size: 5em;
+    font-size: 5rem;
     text-transform: uppercase;
     padding: 2.5rem;
     margin: auto;
@@ -40,13 +40,12 @@ body {
 li {
     padding: .3rem;
     margin: 1rem;
-    /*border-radius: 0.5rem; */
     background-color: #c3c5c1;
     position: relative;
     height: 3.5rem;
 }
 
-#new-task {
+.newTask {
     width: 90%;
     height: 2.87rem;
     padding: .8rem;
@@ -117,13 +116,6 @@ width: 5rem;
 }
 
 .checkbox {
-    /*border: 2px solid #ddd;
-    content: '';
-    background: #fff;
-    text-align: center;
-    margin-right: 0.6rem;
-    margin-top: .6rem;
-    vertical-align: middle;*/
     width: 20px;
     height: 20px;
     padding: 2px;
@@ -164,11 +156,6 @@ input[type="date"]::-webkit-clear-button {
     
     display: none; 
 }
-
-/*input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}*/
 
 button:hover {
     color: rgb(221, 210, 210);

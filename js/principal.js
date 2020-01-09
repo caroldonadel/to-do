@@ -1,6 +1,6 @@
 document.getElementById("dateNewTask").valueAsDate = new Date();
 
-var newTask = document.querySelector("#new-task");
+var newTask = document.querySelector(".newTask");
 var addTaskBtn = document.querySelector("#addNewTask");
 var toDoUl = document.querySelector(".conjuntoItens");
 var dateTask = document.querySelector("#dateNewTask");
@@ -12,13 +12,12 @@ var createNewTask = function(task, inputDate) {
     var date = document.createElement("input");
     var editButton = document.createElement("button");
     var editInput = document.createElement("input");
+    var editDate = document.createElement("input");  
     var deleteButton = document.createElement("button");
 
     deleteButton.onclick = deleteTask;
     editButton.onclick = editTask;
     checkBox.onchange = completeTask;
-
-    
 
     label.innerText = task;
     label.className = "nomeItem";
@@ -34,6 +33,11 @@ var createNewTask = function(task, inputDate) {
     date.type = "date";
     date.className = "datasItens";
     date.valueAsDate = inputDate;
+    date.readOnly = 'true';
+    editDate.type = "date";  
+    editDate.className = "dataInput"; 
+    editDate.id = "newDate";
+    editDate.style.display = "none"; 
 
     listItem.appendChild(checkBox);
     listItem.appendChild(label);
@@ -41,6 +45,7 @@ var createNewTask = function(task, inputDate) {
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
     listItem.appendChild(date);
+    listItem.appendChild(editDate);
 
     return listItem;
 };
@@ -51,23 +56,40 @@ var addTask = function() {
     toDoUl.appendChild(listItem);
 
     newTask.value = "";
+    document.getElementById("dateNewTask").valueAsDate = new Date();
+
 };
 
 var editTask = function() {
-
     var listItem = this.parentNode;
     var editInput = listItem.querySelector(".inputItem");
-    //var checkBox = listItem.querySelector("input[type=text]");
     var label = listItem.querySelector("label");
+    var editDate = listItem.querySelector("#newDate");
+    var date = listItem.querySelector(".datasItens");
 
-    if (editInput.style.display === "none") {
+     if (editInput.style.display === "none") {
+      
         editInput.style.display = "inline-block";
         editInput.value = label.innerText;
         label.style.display = "none";
+        
+
     } else {
         editInput.style.display = "none";
         label.innerText = editInput.value;
         label.style.display = "inline-block";
+    }
+
+    if (editDate.style.display === "none"){
+        date.readOnly = false;
+        editDate.style.display = "inline-block";
+        editDate.valueAsDate = date.valueAsDate;
+        date.style.display  = "none";
+    } else {
+      editDate.style.display = "none";
+      date.valueAsDate = editDate.valueAsDate;
+      date.style.display = "inline-block";
+      date.readOnly = false;
     }
 
     editInput.addEventListener("keyup", function(event) {
