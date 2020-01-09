@@ -1,7 +1,7 @@
 document.getElementById("dateNewTask").valueAsDate = new Date();
 
 var newTask = document.querySelector("#new-task");
-var addTaskBtn = document.querySelector("#addTask");
+var addTaskBtn = document.querySelector("#addNewTask");
 var toDoUl = document.querySelector(".conjuntoItens");
 var dateTask = document.querySelector("#dateNewTask");
 
@@ -18,21 +18,22 @@ var createNewTask = function(task, inputDate) {
     editButton.onclick = editTask;
     checkBox.onchange = completeTask;
 
+    
+
     label.innerText = task;
     label.className = "nomeItem";
     editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.className = "edit";
     deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-    deleteButton.className = "delete";
+    deleteButton.className = "delete iconDelete";
     editInput.type = "text";
     editInput.className = "inputItem";
     editInput.style.display = "none";
     checkBox.type = "checkbox";
     checkBox.className = "checkbox";
     date.type = "date";
-    date.className = "datas";
+    date.className = "datasItens";
     date.valueAsDate = inputDate;
-    console.log(inputDate);
 
     listItem.appendChild(checkBox);
     listItem.appendChild(label);
@@ -53,7 +54,6 @@ var addTask = function() {
 };
 
 var editTask = function() {
-    console.log("Edit task...");
 
     var listItem = this.parentNode;
     var editInput = listItem.querySelector(".inputItem");
@@ -69,6 +69,12 @@ var editTask = function() {
         label.innerText = editInput.value;
         label.style.display = "inline-block";
     }
+
+    editInput.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        listItem.querySelector(".edit").click();
+      }
+    });
 };
 
 var deleteTask = function() {
@@ -102,6 +108,8 @@ addTaskBtn.addEventListener("click", addTask);
 
 newTask.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
-        document.getElementById("addTask").click();
+        document.getElementById("addNewTask").click();
     }
 });
+
+
