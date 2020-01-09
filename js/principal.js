@@ -3,9 +3,7 @@ document.getElementById("dateNewTask").valueAsDate = new Date();
 var newTask = document.querySelector("#new-task");
 var addTaskBtn = document.querySelector("#addTask");
 var toDoUl = document.querySelector(".conjuntoItens");
-var dateTask = document.getElementById("dateNewTask");
-
-console.log(dateTask.valueAsDate);
+var dateTask = document.querySelector("#dateNewTask");
 
 var createNewTask = function(task, inputDate) {
     var listItem = document.createElement("li");
