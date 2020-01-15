@@ -1,3 +1,5 @@
+use todo;
+
 create table tarefas
 (
 	id int auto_increment
