@@ -58,7 +58,6 @@ li {
     background-color: #c3c5c1;
     font-size: inherit;
     font-weight: bold;
-    
     word-break: break-all;
 }
 
@@ -75,7 +74,8 @@ li {
     position: absolute;
     word-break: break-all;
     margin-left: 1rem;
-    max-width: 24rem;
+    max-width: 32rem;
+    overflow: auto;
 }
 
 .TaskNameEdit {
