@@ -1,5 +1,5 @@
 <?php require_once 'global.php';
-require_once 'busca-elementos.php'
+//require_once 'tarefas-busca-elementos.php'
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ require_once 'busca-elementos.php'
     <link rel="stylesheet" href="lib/css/all.css">
 </head>
 <body>
-    <main >
+<main >
         <div class="container">
             <h1 class="container-titulo">To Do List</h1>
         </div>
@@ -21,24 +21,20 @@ require_once 'busca-elementos.php'
                     <input type="text" name="nome" placeholder="Novo item" class="newTaskDescription">
                     <input type="date" name="data" id="dateNewTask" class="dataInputEdit">
                     <button id="addNewTask" class="new"><i class="fas fa-plus add"></i></button>
-                    <?php
-                    foreach($lista as $linha)
-                    {
-
-                    //nesse loop adicionar os elementos html que compoem um item da lista com suas classes e outros atributos
-                        //fazer um if pro status
-//                        $style = '';
-//                        if($row["task_status"] == 'yes')
-//                        {
-//                            $style = 'text-decoration: line-through';
-//                        }
-//                        echo '<a href="#" style="'.$style.'" class="list-group-item" id="list-group-item-'.$row["task_list_id"].'" data-id="'.$row["task_list_id"].'">'.$row["task_details"].' <span class="badge" data-id="'.$row["task_list_id"].'">X</span></a>';
-                  }
-                    ?>
                 </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <label class="taskName"></label>
+                    <input type="date" class="taskDate" readonly="true">
+                    <input type="text" class="TaskNameEdit" display="none">
+                    <input type="date" class="dataInputEdit" id="newDate" display="none">
+                    <button class="edit"><i class="fas fa-edit"></i> </button>
+                    <button class="delete iconDelete"><i class="fas fa-trash"></i></button>
+                </li>
+
             </ul>
     </main>
-    <script type="text/javascript" src="js/adicionar-ajax.js"></script>
     <script type="text/javascript" src="js/principal.js"> </script>
 </body>
 </html>

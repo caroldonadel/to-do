@@ -1,3 +1,5 @@
+create database todo;
+
 use todo;
 
 create table tarefas
