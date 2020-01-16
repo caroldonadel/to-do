@@ -10,12 +10,13 @@ public $status;
     public static function pegarConexao()
     {
         $conexao = new PDO(DB_DRIVE . ':host=' . DB_HOSTNAME . ';dbname=' . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+        return $conexao;
     }
 
     public function inserir()
     {
         $query = "INSERT INTO tarefas (descricao, data, status) VALUES (:descricao, :data, :status)";
-        $conexao = pegarConexao();
+        $conexao = self::pegarConexao();
         $stmt = $conexao->prepare($query);
         $stmt->bindValue(':descricao', $this->descricao);
         $stmt->bindValue(':data', $this->data);

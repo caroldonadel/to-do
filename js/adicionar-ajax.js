@@ -53,6 +53,8 @@ var createNewTask = function(task, inputDate) {
 };
 
 var addTask = function() {
+    addTaskAjax();
+
     var listItem = createNewTask(newTask.value, dateTask.valueAsDate);
 
     toDoUl.appendChild(listItem);
@@ -63,21 +65,22 @@ var addTask = function() {
 };
 
 var addTaskAjax = function() {
-    var newTask = { nome: newTask.value, data: date}
-    var newName = 'John Smith';
-    var xhr = new XMLHttpRequest();
+    console.log("Realizando requisição para o PHP")
+    var task = { nome: newTask.value, data: dateTask.valueAsDate };
+    console.log(task);
 
-    xhr.open('POST', 'myservice/username?id=some-unique-id');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/tarefas-criar-post-json.php');
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
-        if (xhr.status === 200 && xhr.responseText !== newName) {
-            alert('Something went wrong.  Name is now ' + xhr.responseText);
-        }
-        else if (xhr.status !== 200) {
-            alert('Request failed.  Returned status of ' + xhr.status);
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            console.log("Requisição retornou 200 (OK), deve ter salvo o.o")
         }
     };
-    xhr.send(encodeURI('name=' + newName));
+
+    xhr.send(JSON.stringify(task));
 }
 
 addTaskBtn.addEventListener("click", addTask);

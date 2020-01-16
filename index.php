@@ -16,18 +16,19 @@
         </div>
             <ul class="conjuntoItens">
                 <form action="tarefas-criar-post.php" method="post">
-                <li class="newItem">
-                    <input  type="text" name="nome" placeholder="Novo item" class=" newTaskDescription">
-                    <input type="date" name="data" id="dateNewTask" class="dataInputEdit">
-                    <submit id="addNewTask" class="new"><i class="fas fa-plus add"></i></submit>
-                </li>
-
+                    <li class="newItem">
+                        <input type="text" name="nome" placeholder="Novo item" class="newTaskDescription">
+                        <input type="date" name="data" id="dateNewTask" class="dataInputEdit">
+                        <button type="submit" id="addNewTask" class="new"><i class="fas fa-plus add"></i></button>
+                    </li>
                 </form>
+                <!--
                 <form action="tarefas-editar-post.php" method="post">
                     <script type="text/javascript" src="js/adicionar.js">
                     </script>
                 </form>
-                //botao de delete aqui
+                -->
+
             </ul>
     </main>
     <script type="text/javascript" src="js/principal.js"> </script>
