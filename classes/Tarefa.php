@@ -2,7 +2,7 @@
 
 class Tarefa
 {
-public $id;
+//public $id;
 public $descricao;
 public $data;
 public $status;
@@ -20,22 +20,21 @@ public $status;
         $stmt = $conexao->prepare($query);
         $stmt->bindValue(':descricao', $this->descricao);
         $stmt->bindValue(':data', $this->data);
-        $stmt->bindValue(':status', $this->status);
+        $stmt->bindValue(':status', $this-> status);
         $stmt->execute();
     }
 
-
-    /*public function __construct($id = false)
+    public static function listar()
     {
-        if ($id) {
-            $this->id = $id;
-            $this->carregar();
-        }
+        $query = "SELECT descricao, data, status FROM categorias";
+        $conexao = Conexao::pegarConexao();
+        $resultado = $conexao->query($query);
+        $lista = $resultado->fetchAll();
+        return $lista;
     }
 
 
-
-
+    /*
     public function carregar()
     {
         $query = "SELECT id, nome FROM categorias WHERE id = :id";
@@ -46,8 +45,6 @@ public $status;
         $linha = $stmt->fetch();
         $this->nome = $linha['nome'];
     }
-
-
 
     public function atualizar()
     {

@@ -1,4 +1,6 @@
-<?php require_once 'global.php' ?>
+<?php require_once 'global.php';
+require_once 'busca-elementos.php'
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,6 +21,20 @@
                     <input type="text" name="nome" placeholder="Novo item" class="newTaskDescription">
                     <input type="date" name="data" id="dateNewTask" class="dataInputEdit">
                     <button id="addNewTask" class="new"><i class="fas fa-plus add"></i></button>
+                    <?php
+                    foreach($lista as $linha)
+                    {
+
+                    //nesse loop adicionar os elementos html que compoem um item da lista com suas classes e outros atributos
+                        //fazer um if pro status
+//                        $style = '';
+//                        if($row["task_status"] == 'yes')
+//                        {
+//                            $style = 'text-decoration: line-through';
+//                        }
+//                        echo '<a href="#" style="'.$style.'" class="list-group-item" id="list-group-item-'.$row["task_list_id"].'" data-id="'.$row["task_list_id"].'">'.$row["task_details"].' <span class="badge" data-id="'.$row["task_list_id"].'">X</span></a>';
+                  }
+                    ?>
                 </li>
             </ul>
     </main>

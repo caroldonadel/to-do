@@ -6,6 +6,6 @@ create table tarefas
 		primary key,
 	descricao text not null,
 	data date not null,
-	status bit not null
+	status bool not null
 );
 

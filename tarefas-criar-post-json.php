@@ -14,7 +14,7 @@ try {
 
     $tarefa->descricao = $nome;
     $tarefa->data = $data;
-    $tarefa->status = 0;
+    $tarefa->status = 1;
 
     $tarefa->inserir();
 
