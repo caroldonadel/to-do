@@ -35,10 +35,10 @@ require_once 'tarefas-busca-elementos.php'
 
                     <input type="checkbox" class="checkbox">
                     <label class="taskName"><?php echo  $linha['descricao']?></label>
-                    <input type="date" class="taskDate" value="<?php echo data($linha['data'])?>" readonly="true">
-                    <input type="hidden" id="id" value="<?php echo $linha['id'] ?>">
+                    <input type="date" class="taskDate" value="<?php echo $linha['data']?>" readonly="true">
+                    <input type="hidden" id="id" value="<?php echo $linha['id']?>">
                     <input type="text" class="TaskNameEdit" display="none">
-                    <input type="date" class="dataInputEdit" id="newDate" display="none">
+                    <input type="date" class="dataInputEdit" id="newDate" value="<?php echo $linha['data']?>" >
                     <button class="edit"><i class="fas fa-edit"></i> </button>
                     <button class="delete iconDelete"><i class="fas fa-trash"></i></button>
                 </li>

@@ -97,6 +97,7 @@ li {
     padding: .8rem 0.2rem;
     width: 7rem;
     right: 6rem;
+    /*display: none;*/
 }
 
 .taskDate {

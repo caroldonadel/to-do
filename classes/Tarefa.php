@@ -22,6 +22,13 @@ public $status;
         $stmt->bindValue(':data', $this->data);
         $stmt->bindValue(':status', $this-> status);
         $stmt->execute();
+
+        $query = "SELECT LAST_INSERT_ID() as last_id";
+
+        $stmt = $conexao->query($query);
+        $id = $stmt->fetch();
+
+        $this->id = $id[0];
     }
 
     public static function listar()
