@@ -2,7 +2,7 @@
 
 class Tarefa
 {
-//public $id;
+public $id;
 public $descricao;
 public $data;
 public $status;
@@ -26,13 +26,32 @@ public $status;
 
     public static function listar()
     {
-        $query = "SELECT descricao, data, status FROM categorias";
-        $conexao = Conexao::pegarConexao();
+        $query = "SELECT id,descricao, data, status FROM tarefas";
+        $conexao = self::pegarConexao();
         $resultado = $conexao->query($query);
         $lista = $resultado->fetchAll();
         return $lista;
     }
 
+    public function atualizar()
+    {
+        $query = "UPDATE tarefas set descricao = :descricao, data = :data WHERE id = :id";
+        $conexao = Tarefa::pegarConexao();
+        $stmt = $conexao->prepare($query);
+        $stmt->bindValue(':descricao', $this->descricao);
+        $stmt->bindValue(':data', $this->data);
+        $stmt->bindValue(':id', $this->id);
+        $stmt->execute();
+    }
+
+    public function excluir()
+    {
+        $query = "DELETE FROM tarefas WHERE id = :id";
+        $conexao = self::pegarConexao();
+        $stmt = $conexao->prepare($query);
+        $stmt->bindValue(':id', $this->id);
+        $stmt->execute();
+    }
 
     /*
     public function carregar()
@@ -46,23 +65,8 @@ public $status;
         $this->nome = $linha['nome'];
     }
 
-    public function atualizar()
-    {
-        $query = "UPDATE categorias set nome = :nome WHERE id = :id";
-        $conexao = Conexao::pegarConexao();
-        $stmt = $conexao->prepare($query);
-        $stmt->bindValue(':nome', $this->nome);
-        $stmt->bindValue(':id', $this->id);
-        $stmt->execute();
-    }
 
-    public function excluir()
-    {
-        $query = "DELETE FROM categorias WHERE id = :id";
-        $conexao = Conexao::pegarConexao();
-        $stmt = $conexao->prepare($query);
-        $stmt->bindValue(':id', $this->id);
-        $stmt->execute();
-    } */
+
+   */
 }
 

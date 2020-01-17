@@ -1,16 +1,12 @@
 <?php
 require_once 'global.php';
 
-$conexao = Tarefa::pegarConexao();
+    $lista = Tarefa::listar();
 
-$query = " SELECT * FROM tarefas";
+    function data($data){
 
-$stmt = $conexao->prepare($query);
-$stmt->execute();
+    return date("d/m/Y", strtotime($data));
 
-$lista = $stmt->fetchAll();
+    };
 
-header('Content-Type: application/json');
-
-echo json_encode($lista);
 

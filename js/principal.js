@@ -3,7 +3,7 @@ document.getElementById("dateNewTask").valueAsDate = new Date();
 
 let newTask = document.querySelector(".newTaskDescription");
 let addTaskBtn = document.querySelector("#addNewTask");
-//let toDoUl = document.querySelector(".conjuntoItens");
+let toDoUl = document.querySelector(".conjuntoItens");
 let dateTask = document.querySelector("#dateNewTask");
 
 // let createNewTask = function(task, inputDate) {
@@ -59,7 +59,6 @@ let addTask = function() {
     //toDoUl.appendChild(listItem);
     //newTask.value = "";
     document.getElementById("dateNewTask").valueAsDate = new Date(); //redefinindo a data do input como a data de hoje
-
 };
 
 let addTaskAjax = function() {
@@ -67,18 +66,22 @@ let addTaskAjax = function() {
     let task = { nome: newTask.value, data: dateTask.valueAsDate };
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/ToDo/tarefas-criar-post-json.php');
+    xhr.open('POST', 'http://localhost/tarefas-criar-post-json.php');
     xhr.setRequestHeader('Content-Type', 'application/json');
+
     xhr.onload = function() {
         if (xhr.status === 200) {
-            preencheCampos(JSON.parse(xhr.responseText));
-            console.log(xhr.responseText);
+            //console.log(xhr.responseText);
+            toDoUl.append(xhr.responseText);
+           //console.log(JSON.parse(xhr.responseText));
+            //console).log(xhr.responseText);
             // console.log("Requisição retornou 200 (OK), deve ter salvo")
         }
     };
 
     xhr.send(JSON.stringify(task));
-}
+};
+
 //
 // let retrieveTasksAjax = function(){
 //     console.log("Realizando requisição para o PHP - BUSCA");
@@ -96,24 +99,24 @@ let addTaskAjax = function() {
 //     window.location.assign('http://localhost/ToDo/index-json.php');
 // }
 
-function preencheCampos(json) {
-    let d = new Date(json.data);
-    year = d.getFullYear();
-    month = d.getMonth()+1;
-    dt = d.getDate();
-
-    if (dt < 10) {
-        dt = '0' + dt;
-    }
-    if (month < 10) {
-        month = '0' + month;
-    }
-
-    let dataFormatada = year+'-' + month + '-'+dt;
-
-    document.querySelector('.taskName').value = json.nome;
-    document.querySelector('.taskDate').value = dataFormatada;
- }
+// function preencheCampos(json) {
+//     let d = new Date(json.data);
+//     year = d.getFullYear();
+//     month = d.getMonth()+1;
+//     dt = d.getDate();
+//
+//     if (dt < 10) {
+//         dt = '0' + dt;
+//     }
+//     if (month < 10) {
+//         month = '0' + month;
+//     }
+//
+//     let dataFormatada = year+'-' + month + '-'+dt;
+//
+//     document.querySelector('.taskName').value = json.nome;
+//     document.querySelector('.taskDate').value = dataFormatada;
+//  }
 
 addTaskBtn.addEventListener("click", addTask);
 
@@ -163,7 +166,7 @@ let editTask = function() {
 };
 
 let deleteTask = function() {
-    let listItem = this.parentNode;
+    // let listItem = this.parentNode;
     let list = listItem.parentNode;
     let alerta = confirm("Deseja mesmo excluir a tarefa?");
 
