@@ -4,7 +4,7 @@ let newTask = document.querySelector(".newTaskDescription");
 let addTaskBtn = document.querySelector("#addNewTask");
 let toDoUl = document.querySelector(".conjuntoItens");
 let dateTask = document.querySelector("#dateNewTask");
-let deleteBtn = document.querySelector(".delete");
+// let deleteBtn = document.querySelector(".delete");
 
 let createNewTask = function(task, inputDate) {
     let listItem = document.createElement("li");
@@ -16,7 +16,7 @@ let createNewTask = function(task, inputDate) {
     let editDate = document.createElement("input");
     let deleteButton = document.createElement("button");
 
-
+    deleteButton.addEventListener("click", deleteTaskAjax);
 
     label.innerText = task;
     label.className = "taskName";
@@ -121,16 +121,14 @@ let addTaskAjax = function() {
 //         }
 //     };
 
-let deleteTaskAjax = function(){
+let deleteTaskAjax = function(e){
+    console.log(e);
     console.log("Realizando requisição para o PHP - excluir");
 
     elementoAtivo = this.activeElement;
     listItem = this.closest("li");
     elementoProximoId = listItem.querySelector("input[type=hidden]").value;
     list = listItem.closest("ul");
-    // let listItem = document.querySelector(idBotao, "li");
-    // let list = listItem.parentNode;
-    // let idItem = listItem.querySelector("#id").value;
 
     let xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/tarefas-excluir-post-json.php');
@@ -147,7 +145,7 @@ let deleteTaskAjax = function(){
 
 addTaskBtn.addEventListener("click", addTask);
 
-deleteBtn.addEventListener("click", deleteTaskAjax);
+// deleteBtn.addEventListener("click", deleteTaskAjax);
 
 newTask.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -195,8 +193,7 @@ let editTask = function() {
 };
 
 let deleteTask = function() {
-    // let listItem = this.parentNode;
-    // let list = listItem.parentNode;
+
     let alerta = confirm("Deseja mesmo excluir a tarefa?");
 
     if (alerta == true) {
