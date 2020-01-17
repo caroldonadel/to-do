@@ -23,24 +23,27 @@ require_once 'tarefas-busca-elementos.php'
                     <button id="addNewTask" class="new"><i class="fas fa-plus add"></i></button>
                 </li>
         <?php foreach ($lista as $linha) : ?>
+
                 <li>
-                    <?php if ($linha['status']===0){ ?>
-                        <input type="checkbox" class="checkbox" >
-                        <label class="taskName"><?php echo  $linha['descricao']?></label>
-                   <?php }
-                   else { ?>
-                        <input type="checkbox" class="checkbox" checked>
-                        <label class="taskName" text-decoration="line-through"><?php echo  $linha['descricao']?></label>
-                    <?php } ?>
+
+<!--                --><?php //if ($linha['status']===0){ ?>
+<!--                    <input type="checkbox" class="checkbox" >-->
+<!--                    <label class="taskName">--><?php //echo  $linha['descricao']?><!--</label>-->
+<!--               --><?php //}
+//               else { ?>
+<!--                    <input type="checkbox" class="checkbox" checked>-->
+<!--                    <label class="taskName" text-decoration="line-through">--><?php //echo  $linha['descricao']?><!--</label>-->
+<!--                --><?php //} ?>
 
                     <input type="checkbox" class="checkbox">
                     <label class="taskName"><?php echo  $linha['descricao']?></label>
                     <input type="date" class="taskDate" value="<?php echo $linha['data']?>" readonly="true">
-                    <input type="hidden" id="id" value="<?php echo $linha['id']?>">
-                    <input type="text" class="TaskNameEdit" display="none">
+                    <input type="hidden" value="<?php echo $linha['id']?>">
                     <input type="date" class="dataInputEdit" id="newDate" value="<?php echo $linha['data']?>" >
+                    <input type="text" class="TaskNameEdit">
                     <button class="edit"><i class="fas fa-edit"></i> </button>
                     <button class="delete iconDelete"><i class="fas fa-trash"></i></button>
+
                 </li>
 
         <?php endforeach; ?>

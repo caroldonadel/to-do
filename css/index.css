@@ -76,6 +76,7 @@ li {
     margin-left: 1rem;
     max-width: 32rem;
     overflow: auto;
+    pointer-events: none;
 }
 
 .TaskNameEdit {
@@ -87,7 +88,36 @@ li {
     font-size: inherit;
     padding: 1rem;
     margin-left: 2rem;
+    /*display: none;*/
+    /*visibility: hidden;*/
+    position: absolute;
+    opacity: 0;
+
 }
+
+.taskNameEditAtiva{
+    width: 65%;
+    height: 2.9rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c3c5c1;
+    font-size: inherit;
+    padding: 1rem;
+    margin-left: 2rem;
+    display: inline-block;
+}
+
+/*input.taskNameEdit:focus {*/
+/*    display: inline-block;*/
+/*}*/
+
+/*ul li.TaskNameEdit input[type=text] {*/
+/*    display:none;*/
+/*}*/
+
+/*ul li.editMode input[type=text] {*/
+/*    display:block;*/
+/*}*/
 
 .dataInputEdit {
     border: .1rem solid #c4c4c4;

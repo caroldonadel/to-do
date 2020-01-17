@@ -24,10 +24,8 @@ public $status;
         $stmt->execute();
 
         $query = "SELECT LAST_INSERT_ID() as last_id";
-
-        $stmt = $conexao->query($query);
+        $stmt = $conexao->query($query); //usar bindValue
         $id = $stmt->fetch();
-
         $this->id = $id[0];
     }
 
@@ -42,12 +40,13 @@ public $status;
 
     public function atualizar()
     {
-        $query = "UPDATE tarefas set descricao = :descricao, data = :data WHERE id = :id";
+        $query = "UPDATE tarefas set descricao = :descricao, data = :data, status = :status WHERE id = :id";
         $conexao = Tarefa::pegarConexao();
         $stmt = $conexao->prepare($query);
         $stmt->bindValue(':descricao', $this->descricao);
         $stmt->bindValue(':data', $this->data);
         $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':status', $this->status);
         $stmt->execute();
     }
 
@@ -59,21 +58,5 @@ public $status;
         $stmt->bindValue(':id', $this->id);
         $stmt->execute();
     }
-
-    /*
-    public function carregar()
-    {
-        $query = "SELECT id, nome FROM categorias WHERE id = :id";
-        $conexao = Conexao::pegarConexao();
-        $stmt = $conexao->prepare($query);
-        $stmt->bindValue(':id', $this->id);
-        $stmt->execute();
-        $linha = $stmt->fetch();
-        $this->nome = $linha['nome'];
-    }
-
-
-
-   */
 }
 

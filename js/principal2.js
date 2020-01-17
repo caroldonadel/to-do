@@ -5,6 +5,8 @@ let addTaskBtn = document.querySelector("#addNewTask");
 let toDoUl = document.querySelector(".conjuntoItens");
 let dateTask = document.querySelector("#dateNewTask");
 let deleteBtn = document.querySelectorAll(".delete");
+let editBtn = document.querySelectorAll(".edit");
+let  editField = document.querySelectorAll(".TaskNameEdit");
 
 let createNewTask = function(task, inputDate,id) {
     let listItem = document.createElement("li");
@@ -27,7 +29,7 @@ let createNewTask = function(task, inputDate,id) {
     deleteButton.className = "delete iconDelete";
     editInput.type = "text";
     editInput.className = "TaskNameEdit";
-    editInput.style.display = "none";
+    // editInput.style.display = "none";
     checkBox.type = "checkbox";
     checkBox.className = "checkbox";
     date.type = "date";
@@ -53,24 +55,17 @@ let createNewTask = function(task, inputDate,id) {
     return listItem;
 };
 
-let addTask = function() {
-    addTaskAjax();
-    document.getElementById("dateNewTask").valueAsDate = new Date();
-};
-
 let addTaskAjax = function() {
-    console.log("Realizando requisição para o PHP");
     let task = { nome: newTask.value, data: dateTask.valueAsDate };
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/todo/tarefas-criar-post-json2.php');
+    xhr.open('POST', 'http://localhost/todo/tarefas-criar-post-json.php');
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function() {
         if (xhr.status === 200) {
 
             let resultado =  JSON.parse(xhr.responseText);
-            console.log(xhr.response);
             let d = new Date(resultado['data']);
             let year = d.getFullYear();
             let month = d.getMonth()+1;
@@ -83,104 +78,44 @@ let addTaskAjax = function() {
                 month = '0' + month;
             }
 
-            let dataFormatada = year +'-' + month + '-'+dt;
+            let dataFormatada = year +'-' + month + '-'+ dt;
             let itemnovo = createNewTask(resultado['descricao'], dataFormatada, resultado['id']);
 
             toDoUl.appendChild(itemnovo);
             newTask.value = "";
+            document.getElementById("dateNewTask").valueAsDate = new Date();
         }
     };
 
     xhr.send(JSON.stringify(task));
 };
 
-// let editTaskAjax = function() {
-//     console.log("Realizando requisição para o PHP - editar");
-//
-//     let tarefaEditada = document.querySelector(".TaskNameEdit");
-//     let dataEditada = document.querySelector(".dataInputEdit");
-//
-//     let task = { nome: tarefaEditada.value, data: dataEditada.valueAsDate };
-//
-//     let xhr = new XMLHttpRequest();
-//     xhr.open('POST', 'http://localhost/tarefas-editar-post-json.php');
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//
-//     xhr.onload = function() {
-//         if (xhr.status === 200) {
-//             let resultado =  JSON.parse(xhr.responseText);
-//             let d = new Date(resultado['data']);
-//             let year = d.getFullYear();
-//             let month = d.getMonth()+1;
-//             let dt = d.getDate();
-//
-//             if (dt < 10) {
-//                 dt = '0' + dt;
-//             }
-//             if (month < 10) {
-//                 month = '0' + month;
-//             }
-//
-//             let dataFormatada = year+'-' + month + '-'+dt;
-//             let listItem = createNewTask(resultado['nome'], dataFormatada);
-//             toDoUl.appendChild(listItem);
-//             newTask.value = "";
-//         }
-//     };
+let editTaskAjax = function() {
+    console.log("Realizando requisição para o PHP - editar");
 
-let deleteTaskAjax = function(e){
-    console.log(e);
-    console.log("Realizando requisição para o PHP - excluir");
-
-    // elementoAtivo = this.activeElement;
-    let elementoAtivo = e.currentTarget;
-    console.log(elementoAtivo);
-    let listItem = this.closest("li");
-    let elementoProximoId = listItem.querySelector("input[type=hidden]").value;
-    let list = listItem.closest("ul");
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost/todo/tarefas-excluir-post-json.php');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-
-            // deleteTask();
-
-            let alerta = confirm("Deseja mesmo excluir a tarefa?");
-
-            if (alerta == true) {
-                list.removeChild(listItem);
-            }
-
-            console.log("funcionou");
-        }
-    };
-    xhr.send(JSON.stringify(elementoProximoId));
-};
-
-addTaskBtn.addEventListener("click", addTask);
-
-// deleteBtn.addEventListener("click", deleteTaskAjax);
-
-newTask.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        document.getElementById("addNewTask").click();
-    }
-});
-let editTask = function() {
     let listItem = this.parentNode;
     let editInput = listItem.querySelector(".TaskNameEdit");
-    let label = listItem.querySelector("label");
     let editDate = listItem.querySelector("#newDate");
+    let checkboxStatus = listItem.querySelector("input[type=checkbox");
+    let tarefaId = listItem.querySelector("input[type=hidden]").value; //mudar pra esse nome em deletar tbm
+    let statusTarefa;
+    let label = listItem.querySelector("label");
     let date = listItem.querySelector(".taskDate");
+    // date.readOnly = 'false';
 
-     if (editInput.style.display === "none") {
-      
+    if (checkboxStatus.checked === false){
+        statusTarefa = 0;
+    } else {
+        statusTarefa = 1;
+    }
+
+    let task = { nome: editInput.value, data: editDate.valueAsDate, status: statusTarefa, id: tarefaId};
+
+    if (editInput.style.display === "none") {
+
         editInput.style.display = "inline-block";
         editInput.value = label.innerText;
         label.style.display = "none";
-        
 
     } else {
         editInput.style.display = "none";
@@ -202,31 +137,124 @@ let editTask = function() {
     }
 
     editInput.addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) {
-        listItem.querySelector(".edit").click();
-      }
+        if (event.keyCode === 13) {
+            listItem.querySelector(".edit").click();
+        }
     });
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/tarefas-editar-post-json.php');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            let resultado = JSON.parse(xhr.responseText);
+
+
+        }
+    };
+    // xhr.send(JSON.stringify(task));
+}
+
+// let editTask = function() {
+//     // let listItem = this.parentNode;
+//     // let editInput = listItem.querySelector(".TaskNameEdit");
+//     // let label = listItem.querySelector("label");
+//     // let editDate = listItem.querySelector("#newDate");
+//     // let date = listItem.querySelector(".taskDate");
+//
+//     if (editInput.style.display === "none") {
+//
+//         editInput.style.display = "inline-block";
+//         editInput.value = label.innerText;
+//         label.style.display = "none";
+//
+//
+//     } else {
+//         editInput.style.display = "none";
+//         label.innerText = editInput.value;
+//         label.style.display = "inline-block";
+//     }
+//
+//     if (editDate.style.display === "none"){
+//         date.readOnly = false;
+//         editDate.style.display = "inline-block";
+//         editDate.valueAsDate = date.valueAsDate;
+//         date.style.display  = "none";
+//
+//     } else {
+//         editDate.style.display = "none";
+//         date.valueAsDate = editDate.valueAsDate;
+//         date.style.display = "inline-block";
+//         date.readOnly = "false";
+//     }
+//
+//     editInput.addEventListener("keyup", function(event) {
+//         if (event.keyCode === 13) {
+//             listItem.querySelector(".edit").click();
+//         }
+//     });
+// };
+
+// let completeTask = function() {
+//
+//     let listItem = this.parentNode;
+//     let checkBox = listItem.querySelector(".checkbox");
+//     let label = listItem.querySelector("label");
+//
+//     if (checkBox.checked == false) {
+//
+//         label.style.textDecoration = "none";
+//
+//     } else {
+//
+//         label.style.textDecoration = "line-through";
+//     }
+// };
+
+let deleteTaskAjax = function(e){
+
+    // let elementoAtivo = e.currentTarget;
+    let listItem = this.closest("li");
+    let elementoProximoId = listItem.querySelector("input[type=hidden]").value;
+    let list = listItem.closest("ul");
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/todo/tarefas-excluir-post-json.php');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+
+            // deleteTask();
+
+            let alerta = confirm("Deseja mesmo excluir a tarefa?");
+
+            if (alerta == true) {
+                list.removeChild(listItem);
+            }
+        }
+    };
+    xhr.send(JSON.stringify(elementoProximoId));
 };
 
+addTaskBtn.addEventListener("click", addTaskAjax);
 
-let completeTask = function() {
-
-    let listItem = this.parentNode;
-    let checkBox = listItem.querySelector(".checkbox");
-    let label = listItem.querySelector("label");
-
-    if (checkBox.checked == false) {
-
-        label.style.textDecoration = "none";
-        
-    } else {
-
-        label.style.textDecoration = "line-through";
+newTask.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        document.getElementById("addNewTask").click();
     }
-};
+});
 
-for(let i=0;i< deleteBtn.length;i++){
+for(let i=0;i < deleteBtn.length;i++){
     deleteBtn[i].addEventListener('click', deleteTaskAjax);
+}
+
+for(let i=0;i < editBtn.length;i++){
+    editBtn[i].addEventListener('click', editTaskAjax);
+}
+console.log(editField);
+for(let i=0;i < editField.length;i++){
+    editField[i].addEventListener('click', editTaskAjax);
 }
 
 

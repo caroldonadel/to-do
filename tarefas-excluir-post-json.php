@@ -15,7 +15,6 @@ try {
 
     header('Content-Type: application/json');
 
-
     echo $jsonPayload;
 
 } catch (Exception $e) {

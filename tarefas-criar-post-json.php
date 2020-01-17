@@ -2,9 +2,8 @@
 
 require_once 'global.php';
 
-    // Takes raw data from the request
+try{
     $json = file_get_contents('php://input');
-    // Converts it into a PHP object
     $jsonPayload = json_decode($json);
 
     $tarefa = new Tarefa();
@@ -14,27 +13,13 @@ require_once 'global.php';
     $tarefa->descricao = $nome;
     $tarefa->data = $data;
     $tarefa->status = 0;
-
     $tarefa->inserir();
 
-    $item = Tarefa::pegarConexao()->lastInsertId();
+    header('Content-Type: application/json');
+    echo json_encode($tarefa);
+
+} catch (Exception $e) {
 
     header('Content-Type: application/json');
-
-    $tarefaNova = '<li>
-        <input type="checkbox" class="checkbox">
-        <label class="taskName">' . $tarefa->descricao . '</label>
-        <input type="date" class="taskDate" readonly="true" value="' . $tarefa->data . '">
-        <input type="text" class="TaskNameEdit" display="none">
-        <input type="date" class="dataInputEdit" id="newDate" display="none">
-        <button class="edit"><i class="fas fa-edit"></i> </button>
-        <button class="delete iconDelete"><i class="fas fa-trash"></i></button>
-    </li>';
-
-
-echo $tarefaNova;
-
-//} catch (Exception $e) {
-//    header('Content-Type: application/json');
-//    echo json_encode($e);
-//}
+    echo json_encode($e);
+}
