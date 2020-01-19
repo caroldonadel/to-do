@@ -17,7 +17,7 @@ try {
     $tarefa->id = $id;
     $tarefa->atualizar();
 
-     header('Location: categorias.php');
+    header('Content-Type: application/json');
      echo $jsonPayload;
 } catch (Exception $e) {
     Erro::trataErro($e);

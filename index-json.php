@@ -20,32 +20,23 @@ require_once 'tarefas-busca-elementos.php'
                 <li class="newItem">
                     <input type="text" name="nome" placeholder="Novo item" class="newTaskDescription">
                     <input type="date" name="data" id="dateNewTask" class="dataInputEdit">
-                    <button id="addNewTask" class="new"><i class="fas fa-plus add"></i></button>
+                    <button id="addNewTask" class="new add"><i class="fas fa-plus "></i></button>
                 </li>
         <?php foreach ($lista as $linha) : ?>
-
                 <li>
-
-<!--                --><?php //if ($linha['status']===0){ ?>
-<!--                    <input type="checkbox" class="checkbox" >-->
-<!--                    <label class="taskName">--><?php //echo  $linha['descricao']?><!--</label>-->
-<!--               --><?php //}
-//               else { ?>
-<!--                    <input type="checkbox" class="checkbox" checked>-->
-<!--                    <label class="taskName" text-decoration="line-through">--><?php //echo  $linha['descricao']?><!--</label>-->
-<!--                --><?php //} ?>
-
-                    <input type="checkbox" class="checkbox">
-                    <label class="taskName"><?php echo  $linha['descricao']?></label>
-                    <input type="date" class="taskDate" value="<?php echo $linha['data']?>" readonly="true">
-                    <input type="hidden" value="<?php echo $linha['id']?>">
-                    <input type="date" class="dataInputEdit" id="newDate" value="<?php echo $linha['data']?>" >
+                    <?php if($linha['status']=== "1"){ ?>
+                        <input type="checkbox" class="checkbox" checked>
+                        <label class="taskName tarefaCompleta"><?php echo  $linha['descricao']?></label>
+                    <?php }else{ ?>
+                        <input type="checkbox" class="checkbox">
+                        <label class="taskName"><?php echo  $linha['descricao']?></label>
+                    <?php  } ?>
                     <input type="text" class="TaskNameEdit">
+                    <input type="date" class="taskDate" value="<?php echo $linha['data']?>" >
+                    <input type="hidden" value="<?php echo $linha['id']?>">
                     <button class="edit"><i class="fas fa-edit"></i> </button>
                     <button class="delete iconDelete"><i class="fas fa-trash"></i></button>
-
                 </li>
-
         <?php endforeach; ?>
             </ul>
     </main>
