@@ -10,6 +10,10 @@ require_once 'tarefas-busca-elementos.php'
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="lib/css/all.css">
+    <script
+            src="https://kit.fontawesome.com/6d6952c5be.js"
+            crossorigin="anonymous"
+    ></script>
 </head>
 <body>
 <main >
